@@ -1,0 +1,3 @@
+[submodule "decider-backend"]
+	path = decider-backend
+	url = git@github.com:tech-team/decider-backend.git
