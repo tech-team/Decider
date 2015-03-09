@@ -1,6 +1,6 @@
-[submodule "decider_backend"]
-	path = decider_backend
-	url = git@github.com:tech-team/decider_backend.git
+[submodule "decider-backend"]
+	path = decider-backend
+	url = git@github.com:tech-team/decider-backend.git
 [submodule "decider-android"]
 	path = decider-android
 	url = git@github.com:tech-team/decider-android.git
