@@ -15,26 +15,22 @@ It is recommend to follow the “url” link values,
 applicable to retrieve resources. Instead of constructing your own URLs,
 to keep your client decoupled from implementation details.
 
-## Retrieve the Entry Point [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "questions_url": "/questions"
-        }
-
 ## Group Question
 
 Resources related to questions in the API.
 
-## Question [/questions/{question_id}]
+## Question [/questions/{question_id}{?access_token}]
 
 A Question object has the following attributes:
 
-+ question
-+ published_at - An ISO8601 date when the question was published.
-+ url
-+ choices - An array of Choice objects.
++ id (number) - Question's id
++ text (string)
++ creation_date (string) - An ISO8601 date when the question was created.
++ author (string) - Author user id
++ poll (object) - Poll object
++ likes (number) - Likes count
++ is_closed
++ comments (array[Comment]) - Array of Comment objects
 
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
@@ -43,139 +39,188 @@ A Question object has the following attributes:
 
 + Response 200 (application/json)
 
+        {
+            "id": 1,
+            "text": "Какое платье приодеть?",
+            "creation_date": "2014-11-11T08:40:51.620Z",
+            "author": 12,
+            "poll": [
                 {
-                    "question": "Favourite programming language?",
-                    "published_at": "2014-11-11T08:40:51.620Z",
-                    "url": "/questions/1",
-                    "choices": [
-                        {
-                            "choice": "Swift",
-                            "url": "/questions/1/choices/1",
-                            "votes": 2048
-                        }, {
-                            "choice": "Python",
-                            "url": "/questions/1/choices/2",
-                            "votes": 1024
-                        }, {
-                            "choice": "Objective-C",
-                            "url": "/questions/1/choices/3",
-                            "votes": 512
-                        }, {
-                            "choice": "Ruby",
-                            "url": "/questions/1/choices/4",
-                            "votes": 256
-                        }
-                    ]
+                    "id": 124,
+                    "text": "Белое",
+                    "image_url": "http://cs301806.vk.me/v301806039/3fe0/Ps1ZDUixseo.jpg",
+                    "votes_count": 23
+                },
+                {
+                    "id": 125,
+                    "text": "Красное",
+                    "image_url": "http://public.starlook.ru/temp/article/lookobzor/27/1/63rdAnnualPrimetimeEmmyAwardsArrivalsR-7OeiQnDDxl.jpg",
+                    "votes_count": 73
                 }
+            ],
+            "likes": 42,
+            "comments": [
+                {
+                    
+                }
+            ]
+        }
+        
++ Response 403
 
-## Choice [/questions/{question_id}/choices/{choice_id}]
+        {
+            "status": "error",
+            "code": 7001,
+            "msg": "Access token has expired"
+        }
+        
++ Response 404
+
+        {
+            "status": "error",
+            "code": 8001,
+            "msg": "Question with specified id was not found"
+        }
+        
+
+
+## Choice [/questions/{question_id}/poll/{poll_item_id}{?access_token}]
 
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
-    + choice_id (required, number, `1`) ... ID of the Choice in form of an integer
+    + poll_item_id (required, number, `1`) ... ID of the Poll item in form of an integer
 
 ### Vote on a Choice [POST]
 
-This action allows you to vote on a question's choice.
+This action allows you to vote on a question's poll.
 
 + Response 201
 
-    + Headers
-
-            Location: /questions/1
-
-## Questions Collection [/questions{?page}]
-
-+ Parameters
-    + page (optional, number, `1`) ... The page of questions to return
-
-### List All Questions [GET]
-
-+ Response 200 (application/json)
+        {
+            "status": "ok",
+            "code": 0
+        }
 
     + Headers
 
-            Link: </questions?page=2>; rel="next"
+            Location: /questions/{question_id}
+            
++ Response 403
 
-    + Body
+        {
+            "status": "error",
+            "code": 7001,
+            "msg": "Access token has expired"
+        }
+        
++ Response 404
 
-            [
-                {
-                    "question": "Favourite programming language?",
-                    "published_at": "2014-11-11T08:40:51.620Z",
-                    "url": "/questions/1",
-                    "choices": [
-                        {
-                            "choice": "Swift",
-                            "url": "/questions/1/choices/1",
-                            "votes": 2048
-                        }, {
-                            "choice": "Python",
-                            "url": "/questions/1/choices/2",
-                            "votes": 1024
-                        }, {
-                            "choice": "Objective-C",
-                            "url": "/questions/1/choices/3",
-                            "votes": 512
-                        }, {
-                            "choice": "Ruby",
-                            "url": "/questions/1/choices/4",
-                            "votes": 256
-                        }
-                    ]
-                }
-            ]
+        {
+            "status": "error",
+            "code": 8001,
+            "msg": "Question with specified id was not found"
+        }
+        
++ Response 404
 
-### Create a New Question [POST]
+        {
+            "status": "error",
+            "code": 8002,
+            "msg": "Poll item with specified id was not found"
+        }
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+<!--## Questions Collection [/questions{?page}]-->
 
-+ question (string) - The question
-+ choices (array[string]) - A collection of choices.
+<!--+ Parameters-->
+<!--    + page (optional, number, `1`) ... The page of questions to return-->
 
-+ Request (application/json)
+<!--### List All Questions [GET]-->
 
-            {
-                "question": "Favourite programming language?",
-                "choices": [
-                    "Swift",
-                    "Python",
-                    "Objective-C",
-                    "Ruby"
-                ]
-            }
+<!--+ Response 200 (application/json)-->
 
-+ Response 201 (application/json)
+<!--    + Headers-->
 
-    + Headers
+<!--            Link: </questions?page=2>; rel="next"-->
 
-            Location: /questions/2
+<!--    + Body-->
 
-    + Body
+<!--            [-->
+<!--                {-->
+<!--                    "question": "Favourite programming language?",-->
+<!--                    "published_at": "2014-11-11T08:40:51.620Z",-->
+<!--                    "url": "/questions/1",-->
+<!--                    "choices": [-->
+<!--                        {-->
+<!--                            "choice": "Swift",-->
+<!--                            "url": "/questions/1/choices/1",-->
+<!--                            "votes": 2048-->
+<!--                        }, {-->
+<!--                            "choice": "Python",-->
+<!--                            "url": "/questions/1/choices/2",-->
+<!--                            "votes": 1024-->
+<!--                        }, {-->
+<!--                            "choice": "Objective-C",-->
+<!--                            "url": "/questions/1/choices/3",-->
+<!--                            "votes": 512-->
+<!--                        }, {-->
+<!--                            "choice": "Ruby",-->
+<!--                            "url": "/questions/1/choices/4",-->
+<!--                            "votes": 256-->
+<!--                        }-->
+<!--                    ]-->
+<!--                }-->
+<!--            ]-->
 
-                {
-                    "question": "Favourite programming language?",
-                    "published_at": "2014-11-11T08:40:51.620Z",
-                    "url": "/questions/2",
-                    "choices": [
-                        {
-                            "choice": "Swift",
-                            "url": "/questions/2/choices/1",
-                            "votes": 0
-                        }, {
-                            "choice": "Python",
-                            "url": "/questions/2/choices/2",
-                            "votes": 0
-                        }, {
-                            "choice": "Objective-C",
-                            "url": "/questions/2/choices/3",
-                            "votes": 0
-                        }, {
-                            "choice": "Ruby",
-                            "url": "/questions/2/choices/4",
-                            "votes": 0
-                        }
-                    ]
-                }
+<!--### Create a New Question [POST]-->
+
+<!--You may create your own question using this action. It takes a JSON-->
+<!--object containing a question and a collection of answers in the-->
+<!--form of choices.-->
+
+<!--+ question (string) - The question-->
+<!--+ choices (array[string]) - A collection of choices.-->
+
+<!--+ Request (application/json)-->
+
+<!--            {-->
+<!--                "question": "Favourite programming language?",-->
+<!--                "choices": [-->
+<!--                    "Swift",-->
+<!--                    "Python",-->
+<!--                    "Objective-C",-->
+<!--                    "Ruby"-->
+<!--                ]-->
+<!--            }-->
+
+<!--+ Response 201 (application/json)-->
+
+<!--    + Headers-->
+
+<!--            Location: /questions/2-->
+
+<!--    + Body-->
+
+<!--                {-->
+<!--                    "question": "Favourite programming language?",-->
+<!--                    "published_at": "2014-11-11T08:40:51.620Z",-->
+<!--                    "url": "/questions/2",-->
+<!--                    "choices": [-->
+<!--                        {-->
+<!--                            "choice": "Swift",-->
+<!--                            "url": "/questions/2/choices/1",-->
+<!--                            "votes": 0-->
+<!--                        }, {-->
+<!--                            "choice": "Python",-->
+<!--                            "url": "/questions/2/choices/2",-->
+<!--                            "votes": 0-->
+<!--                        }, {-->
+<!--                            "choice": "Objective-C",-->
+<!--                            "url": "/questions/2/choices/3",-->
+<!--                            "votes": 0-->
+<!--                        }, {-->
+<!--                            "choice": "Ruby",-->
+<!--                            "url": "/questions/2/choices/4",-->
+<!--                            "votes": 0-->
+<!--                        }-->
+<!--                    ]-->
+<!--                }-->
