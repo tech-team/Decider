@@ -67,7 +67,7 @@ A Question object has the following attributes:
             ]
         }
         
-+ Response 403
++ Response 403 (application/json)
 
         {
             "status": "error",
@@ -75,7 +75,7 @@ A Question object has the following attributes:
             "msg": "Access token has expired"
         }
         
-+ Response 404
++ Response 404 (application/json)
 
         {
             "status": "error",
@@ -95,14 +95,14 @@ A Question object has the following attributes:
 
 This action allows you to vote on a question's poll.
 
-+ Response 201
++ Response 201 (application/json)
 
         {
             "status": "ok",
             "code": 0
         }
             
-+ Response 403
++ Response 403 (application/json)
 
         {
             "status": "error",
@@ -110,7 +110,7 @@ This action allows you to vote on a question's poll.
             "msg": "Access token has expired"
         }
         
-+ Response 404
++ Response 404 (application/json)
 
         {
             "status": "error",
@@ -118,7 +118,7 @@ This action allows you to vote on a question's poll.
             "msg": "Question with specified id was not found"
         }
         
-+ Response 404
++ Response 404 (application/json)
 
         {
             "status": "error",
