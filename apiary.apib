@@ -16,11 +16,11 @@ A Question object has the following attributes:
 + id (number) - Question's id
 + text (string)
 + creation_date (string) - An ISO8601 date when the question was created.
-+ author (string) - Author user id
++ author (object) - Author info
 + poll (object) - Poll object
 + likes (number) - Likes count
 + is_closed
-+ comments (array[Comment]) - Array of Comment objects
++ comments (array[object]) - Array of Comment objects
 
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
