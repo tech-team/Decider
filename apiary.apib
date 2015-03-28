@@ -276,31 +276,36 @@ form of choices.
 + Response 201 (application/json)
 
         {
-            "id": 1,
-            "text": "Какое платье приодеть?",
-            "creation_date": "2014-11-11T08:40:51.620Z",
-            "category_id": 3,
-            "author": {
-                "id": 12,
-                "name": "Нина Добрев",
-                "avatar": "http://vignette3.wikia.nocookie.net/prettylittleliars/images/9/99/Nina_dobrev.jpg/revision/latest?cb=20131005203615"
-            },
-            "poll": [
-                {
-                    "id": 124,
-                    "text": "Белое",
-                    "image_url": "http://cs301806.vk.me/v301806039/3fe0/Ps1ZDUixseo.jpg",
-                    "votes_count": 23
+            "status": "ok",
+            "code": 2001,
+            "msg": "Question added",
+            "data": {
+                "id": 1,
+                "text": "Какое платье приодеть?",
+                "creation_date": "2014-11-11T08:40:51.620Z",
+                "category_id": 3,
+                "author": {
+                    "id": 12,
+                    "name": "Нина Добрев",
+                    "avatar": "http://vignette3.wikia.nocookie.net/prettylittleliars/images/9/99/Nina_dobrev.jpg/revision/latest?cb=20131005203615"
                 },
-                {
-                    "id": 125,
-                    "text": "Красное",
-                    "image_url": "http://public.starlook.ru/temp/article/lookobzor/27/1/63rdAnnualPrimetimeEmmyAwardsArrivalsR-7OeiQnDDxl.jpg",
-                    "votes_count": 73
-                }
-            ],
-            "likes": 42,
-            "comments": [ ]
+                "poll": [
+                    {
+                        "id": 124,
+                        "text": "Белое",
+                        "image_url": "http://cs301806.vk.me/v301806039/3fe0/Ps1ZDUixseo.jpg",
+                        "votes_count": 23
+                    },
+                    {
+                        "id": 125,
+                        "text": "Красное",
+                        "image_url": "http://public.starlook.ru/temp/article/lookobzor/27/1/63rdAnnualPrimetimeEmmyAwardsArrivalsR-7OeiQnDDxl.jpg",
+                        "votes_count": 73
+                    }
+                ],
+                "likes": 42,
+                "comments": [ ]
+            }
         }
         
 + Response 400 (application/json)
