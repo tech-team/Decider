@@ -17,22 +17,11 @@ Resources related to questions in the API.
 
 ## Question [/questions/{question_id}{?access_token}]
 
-A Question object has the following attributes:
-
-+ id (number) - Question's id
-+ text (string)
-+ creation_date (string) - An ISO8601 date when the question was created.
-+ author (object) - Author info
-+ poll (object) - Poll object
-+ likes (number) - Likes count
-+ is_closed (bool)
-+ comments (array[object]) - Array of Comment objects
-
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
     + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
-### View a Questions Detail [GET]
+### View a Question's Detail [GET]
 
 + Response 200 (application/json)
 
@@ -40,6 +29,7 @@ A Question object has the following attributes:
             "id": 1,
             "text": "Какое платье приодеть?",
             "creation_date": "2014-11-11T08:40:51.620Z",
+            "category_id": 3,
             "author": {
                 "id": 12,
                 "name": "Нина Добрев",
@@ -104,16 +94,26 @@ A Question object has the following attributes:
         
 
 
-## Poll [/questions/{question_id}/poll/{poll_item_id}{?access_token}]
-
-+ Parameters
-    + question_id (required, number, `1`) ... ID of the Question in form of an integer
-    + poll_item_id (required, number, `1`) ... ID of the Poll item in form of an integer
-    + access_token (required, string, `ACCESSTOKEN`) ... Access token
+## Poll [/questions/poll]
 
 ### Vote on a questions's poll [POST]
 
 This action allows you to vote on a question's poll.
+
++ `access_token` (required, string) ... Access token
++ `question_id` (required, number) ... Question id
++ `poll_item_id` (required, number) ... Poll item id
+
+
++ Request (application/json)
+
+        {
+            "access_token": "ACCESSTOKEN",
+            "data": {
+                "question_id": 1,
+                "poll_item_id": 12
+            }
+        }
 
 + Response 201 (application/json)
 
@@ -146,7 +146,7 @@ This action allows you to vote on a question's poll.
             "msg": "Poll item with specified id was not found"
         }
 
-## Questions Collection [/questions{?tab}{?limit}{?offset}{?access_token}]
+## Question's collection [/questions{?tab}{?limit}{?offset}{?access_token}]
 
 + Parameters
     + tab (optional, string, `new`) ... Question tab [new, popular]
@@ -167,7 +167,12 @@ This action allows you to vote on a question's poll.
                     "id": 1,
                     "text": "Какое платье приодеть?",
                     "creation_date": "2014-11-11T08:40:51.620Z",
-                    "author": 12,
+                    "category_id": 3,
+                    "author": {
+                        "id": 12,
+                        "name": "Нина Добрев",
+                        "avatar": "http://vignette3.wikia.nocookie.net/prettylittleliars/images/9/99/Nina_dobrev.jpg/revision/latest?cb=20131005203615"
+                    },
                     "poll": [
                         {
                             "id": 124,
@@ -189,7 +194,12 @@ This action allows you to vote on a question's poll.
                     "id": 2,
                     "text": "Какое платье приодеть на этот раз?",
                     "creation_date": "2014-11-11T08:40:51.620Z",
-                    "author": 12,
+                    "category_id": 3,
+                    "author": {
+                        "id": 12,
+                        "name": "Нина Добрев",
+                        "avatar": "http://vignette3.wikia.nocookie.net/prettylittleliars/images/9/99/Nina_dobrev.jpg/revision/latest?cb=20131005203615"
+                    },
                     "poll": [
                         {
                             "id": 124,
@@ -227,57 +237,91 @@ This action allows you to vote on a question's poll.
             "code": 8003,
             "msg": "Tab is unknown"
         }
+        
+## New Question [/questions]
 
-<!--### Create a New Question [POST]-->
+### Create a New Question [POST]
 
-<!--You may create your own question using this action. It takes a JSON-->
-<!--object containing a question and a collection of answers in the-->
-<!--form of choices.-->
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
 
-<!--+ question (string) - The question-->
-<!--+ choices (array[string]) - A collection of choices.-->
++ `access_token` (string) - Access token
++ `text` (string) - Question's text
++ `category_id` (number) - Category id
++ `poll` (object) - Poll object
++ `is_anonymous` (boolean)
 
-<!--+ Request (application/json)-->
++ Request (application/json)
 
-<!--            {-->
-<!--                "question": "Favourite programming language?",-->
-<!--                "choices": [-->
-<!--                    "Swift",-->
-<!--                    "Python",-->
-<!--                    "Objective-C",-->
-<!--                    "Ruby"-->
-<!--                ]-->
-<!--            }-->
+            {
+                "access_token": "ACCESSTOKEN",
+                "data": {
+                    "text": "Какое платье приодеть на этот раз?",
+                    "creation_date": "2014-11-11T08:40:51.620Z",
+                    "category_id": 3,
+                    "poll": [
+                        {
+                            "id": 124,
+                            "text": "Белое",
+                            "image_url": "http://cs301806.vk.me/v301806039/3fe0/Ps1ZDUixseo.jpg",
+                            "votes_count": 23
+                        },
+                        {
+                            "id": 125,
+                            "text": "Красное",
+                            "image_url": "http://public.starlook.ru/temp/article/lookobzor/27/1/63rdAnnualPrimetimeEmmyAwardsArrivalsR-7OeiQnDDxl.jpg",
+                            "votes_count": 73
+                        }
+                    ]
+                    "text": "Favourite programming language?",
+                    
+                    "poll": {
+                        "content": "PIC",
+                        "items": [
+                            {
+                                "name": "Perl",
+                                "picture_id": 140
+                            },
+                            {
+                                "name": "Python",
+                                "picture_id": 141
+                            }
+                        ]
+                    },
+                    "is_anonymous": false
+                }
+            }
 
-<!--+ Response 201 (application/json)-->
++ Response 201 (application/json)
 
-<!--    + Headers-->
+    + Headers
 
-<!--            Location: /questions/2-->
+            Location: /questions/2
 
-<!--    + Body-->
+    + Body
 
-<!--                {-->
-<!--                    "question": "Favourite programming language?",-->
-<!--                    "published_at": "2014-11-11T08:40:51.620Z",-->
-<!--                    "url": "/questions/2",-->
-<!--                    "choices": [-->
-<!--                        {-->
-<!--                            "choice": "Swift",-->
-<!--                            "url": "/questions/2/choices/1",-->
-<!--                            "votes": 0-->
-<!--                        }, {-->
-<!--                            "choice": "Python",-->
-<!--                            "url": "/questions/2/choices/2",-->
-<!--                            "votes": 0-->
-<!--                        }, {-->
-<!--                            "choice": "Objective-C",-->
-<!--                            "url": "/questions/2/choices/3",-->
-<!--                            "votes": 0-->
-<!--                        }, {-->
-<!--                            "choice": "Ruby",-->
-<!--                            "url": "/questions/2/choices/4",-->
-<!--                            "votes": 0-->
-<!--                        }-->
-<!--                    ]-->
-<!--                }-->
+                {
+                    "question": "Favourite programming language?",
+                    "published_at": "2014-11-11T08:40:51.620Z",
+                    "url": "/questions/2",
+                    "choices": [
+                        {
+                            "choice": "Swift",
+                            "url": "/questions/2/choices/1",
+                            "votes": 0
+                        }, {
+                            "choice": "Python",
+                            "url": "/questions/2/choices/2",
+                            "votes": 0
+                        }, {
+                            "choice": "Objective-C",
+                            "url": "/questions/2/choices/3",
+                            "votes": 0
+                        }, {
+                            "choice": "Ruby",
+                            "url": "/questions/2/choices/4",
+                            "votes": 0
+                        }
+                    ]
+                }
