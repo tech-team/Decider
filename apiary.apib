@@ -97,22 +97,23 @@ Resources related to questions in the API.
 
 ### Vote on a questions's poll [POST]
 
-This action allows you to vote on a question's poll.
+This action allows you to vote on a question's poll. Current example:
+{
+    "access_token":"ACCESSTOKEN",
+    "data": {
+        "question_id":1,
+        "poll_item_id":12
+    }
+}
 
 + `access_token` (required, string) ... Access token
 + `question_id` (required, number) ... Question id
 + `poll_item_id` (required, number) ... Poll item id
 
 
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
 
-        {
-            "access_token": "ACCESSTOKEN",
-            "data": {
-                "question_id": 1,
-                "poll_item_id": 12
-            }
-        }
+        access_token=ACCESSTOKEN&data=%7B%22access_token%22%3A%22ACCESSTOKEN%22%2C%22data%22%3A%7B%22question_id%22%3A1%2C%22poll_item_id%22%3A12%7D%7D
 
 + Response 201 (application/json)
 
