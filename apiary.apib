@@ -24,6 +24,7 @@ A Question object has the following attributes:
 
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
+    + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
 ### View a Questions Detail [GET]
 
@@ -102,6 +103,7 @@ A Question object has the following attributes:
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
     + poll_item_id (required, number, `1`) ... ID of the Poll item in form of an integer
+    + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
 ### Vote on a Choice [POST]
 
@@ -141,9 +143,10 @@ This action allows you to vote on a question's poll.
 ## Questions Collection [/questions{?tab}{?limit}{?offset}{?access_token}]
 
 + Parameters
-    + tab (optional, number, `new`) ... Question tab [new, popular]
+    + tab (optional, string, `new`) ... Question tab [new, popular]
     + limit (optional, number, `1`) ... Maximum number of questions to return
     + offset (optional, number, `1`) ... Questions offset
+    + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
 ### List All Questions [GET]
 
