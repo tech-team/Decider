@@ -5,6 +5,12 @@ HOST: http://polls.apiblueprint.org/
 
 Polls is a simple API allowing consumers to view polls and vote in them.
 
+## Group User
+
+Resources related to user registration and login
+
+
+
 ## Group Question
 
 Resources related to questions in the API.
@@ -19,7 +25,7 @@ A Question object has the following attributes:
 + author (object) - Author info
 + poll (object) - Poll object
 + likes (number) - Likes count
-+ is_closed
++ is_closed (bool)
 + comments (array[object]) - Array of Comment objects
 
 + Parameters
@@ -98,14 +104,14 @@ A Question object has the following attributes:
         
 
 
-## Choice [/questions/{question_id}/poll/{poll_item_id}{?access_token}]
+## Poll [/questions/{question_id}/poll/{poll_item_id}{?access_token}]
 
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
     + poll_item_id (required, number, `1`) ... ID of the Poll item in form of an integer
     + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
-### Vote on a Choice [POST]
+### Vote on a questions's poll [POST]
 
 This action allows you to vote on a question's poll.
 
