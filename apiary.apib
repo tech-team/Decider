@@ -149,7 +149,7 @@ This action allows you to vote on a question's poll. Current example:
 ## Question's collection [/questions{?tab}{?limit}{?offset}{?access_token}]
 
 + Parameters
-    + tab (optional, string, `new`) ... Question tab [new, popular]
+    + tab (optional, string, `new`) ... Question tab [new, popular, my]
     + limit (optional, number, `1`) ... Maximum number of questions to return
     + offset (optional, number, `1`) ... Questions offset
     + access_token (required, string, `ACCESSTOKEN`) ... Access token
@@ -316,6 +316,16 @@ form of choices.
                 "comments": [ ]
             }
         }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "code": 8000,
+            "msg": "Required params are missing",
+            "errors": [ ]
+        }
+        
         
 + Response 400 (application/json)
 
