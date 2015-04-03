@@ -107,13 +107,13 @@ This action allows you to vote on a question's poll. Current example:
 }
 
 + `access_token` (required, string) ... Access token
-+ `question_id` (required, number) ... Question id
++ `poll_id` (required, number) ... Poll id
 + `poll_item_id` (required, number) ... Poll item id
 
 
 + Request (application/x-www-form-urlencoded)
 
-        access_token=ACCESSTOKEN&data={"access_token":"ACCESSTOKEN","data":{"question_id":1,"poll_item_id":12}}
+        access_token=ACCESSTOKEN&data={"access_token":"ACCESSTOKEN","data":{"poll_id":1,"poll_item_id":12}}
 
 + Response 201 (application/json)
 
