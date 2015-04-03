@@ -129,7 +129,16 @@ This action allows you to vote on a question's poll. Current example:
         {
             "status": "error",
             "code": 8000,
-            "msg": "Required params are missing"
+            "msg": "Required params are missing",
+            "errors": [ ]
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "code": 8005,
+            "msg": "Some fields are invalid",
             "errors": [ ]
         }
     
