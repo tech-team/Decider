@@ -176,12 +176,14 @@ This action allows you to vote on a question's poll. Current example:
             "msg": "Poll item with specified id was not found"
         }
 
-## Question's collection [/questions{?tab}{?limit}{?offset}{?access_token}]
+## Question's collection [/questions{?tab}{?limit}{?offset}{?categories%5b%5d}{?access_token}]
 
 + Parameters
-    + tab (optional, string, `new`) ... Question tab [new, popular, my]
-    + limit (optional, number, `1`) ... Maximum number of questions to return
-    + offset (optional, number, `1`) ... Questions offset
+    + tab (required, string, `new`) ... Question tab [new, popular, my]
+    + limit (required, number, `1`) ... Maximum number of questions to return
+    + offset (required, number, `1`) ... Questions offset
+    + categories%5b%5d (required, number, `5`) ... Selected categories
+        For example: `categories[]=1&categories[]=2&categories[]=3`
     + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
 ### List All Questions [GET]
