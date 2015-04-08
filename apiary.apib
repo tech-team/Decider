@@ -8,6 +8,60 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 Resources related to user registration and login
 
+## Login [/login]
+
+### Login [POST]
+
+Log in user using email and password.
+
++ `email` (required, string) - User's email
++ `password` (required, string) - User's password
+
++ Request (application/json)
+
+        {
+            "email": "aaa@aaa.aaa",
+            "password": "pass"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "Login successful",
+            "code": 2000,
+            "data": {
+                "access_token": "d7Fi4I2DtLXuLCNukHDITQdjqfFDfR",
+                "expires": 36000,
+                "refresh_token": "9Rz8AFAyMYJHjmYs8WXMGHQbBTvwOk"
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+        "status": "error",
+        "msg": "Some fields are not filled",
+        "code": 7003,
+        "errors": []
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Invalid email/password",
+            "code": 7002,
+            "errors": []
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "code": 7100,
+            "msg": "Login failed"
+        }
 
 ## Group Question
 
