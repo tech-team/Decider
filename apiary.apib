@@ -63,6 +63,61 @@ Log in user using email and password.
             "msg": "Login failed"
         }
 
+## Registration [/registration]
+
+### Registration [POST]
+
+Register user using email and password.
+
++ `email` (required, string) - User's email,
++ `username` (required, string) - User's nickname
++ `password` (required, string) - User's password
+
++ Request (application/json)
+
+        {
+            "email": "aaa@aaa.aaa",
+            "password": "pass"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "Registration successful",
+            "code": 2001,
+            "data": {
+                "access_token": "d7Fi4I2DtLXuLCNukHDITQdjqfFDfR",
+                "expires": 36000,
+                "refresh_token": "9Rz8AFAyMYJHjmYs8WXMGHQbBTvwOk"
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+        "status": "error",
+        "msg": "Some fields are not filled",
+        "code": 7003,
+        "errors": []
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Email is taken",
+            "code": 7004
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "code": 7101,
+            "msg": "Registration failed"
+        }
+        
 ## Group Question
 
 Resources related to questions in the API.
