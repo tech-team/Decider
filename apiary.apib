@@ -13,6 +13,68 @@ Resources related to user registration and login
 
 Resources related to questions in the API.
 
+
+## Categories [/categories{?locale}{?access_token}]
+
++ Parameters
+    + locale (required, string, `ru_RU`) ... Client's locale
+    + access_token (required, string, `ACCESSTOKEN`) ... Access token
+
+### List All Categories [GET]
+
++ Response 200 (application/json)
+
+        {
+            "status": "ok",
+            "code": 2000,
+            "msg": "DUNNO",
+            "total": 4,
+            "data": [
+                {
+                    "id": 1,
+                    "name": "Одежда"
+                },
+                {
+                    "id": 2,
+                    "name": "Музыка"
+                },
+                {
+                    "id": 3,
+                    "name": "Жизнь"
+                },
+                {
+                    "id": 4,
+                    "name": "Работа"
+                }
+            ]
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "code": 8100,
+            "msg": "Some parameters are invalid",
+            "errors": [ ]
+        }        
+        
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "code": 7001,
+            "msg": "Access token is invalid"
+        }
+        
+        
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "code": 8006,
+            "msg": "Locale is unknown"
+        }
+
 ## Question [/questions/{question_id}{?access_token}]
 
 + Parameters
