@@ -342,6 +342,14 @@ This action allows you to vote on a question's poll. Current example:
             "msg": "Tab is unknown"
         }
         
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "code": 8006,
+            "msg": "Categories are invalid"
+        }
+        
 ## New Question [/questions]
 
 ### Create a New Question [POST]
@@ -450,4 +458,5 @@ form of choices.
             "code": 8004,
             "msg": "Category is unknown"
         }
+
         
