@@ -14,7 +14,8 @@ Resources related to user registration and login
 
 Log in user using email and password.
 
-+ `email` (required, string) - User's email
++ `email` (required, string) - User's email OR
++ `social_id` (required, string) - User's social id
 + `password` (required, string) - User's password
 
 + Request (application/json)
@@ -24,6 +25,13 @@ Log in user using email and password.
             "password": "pass"
         }
 
++ Request (application/json)
+
+        {
+            "social_id": "242490fj23uj2",
+            "password": "pass"
+        }
+        
 + Response 200 (application/json)
 
         {
@@ -31,6 +39,7 @@ Log in user using email and password.
             "msg": "Login successful",
             "code": 2000,
             "data": {
+                "uid": "3e3d33ff3f3fd3f3f3f3d3",
                 "access_token": "d7Fi4I2DtLXuLCNukHDITQdjqfFDfR",
                 "expires": 36000,
                 "refresh_token": "9Rz8AFAyMYJHjmYs8WXMGHQbBTvwOk"
