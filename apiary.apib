@@ -67,9 +67,8 @@ OR
 
         {
             "status": "error",
-            "msg": "Invalid email/password",
-            "code": 7002,
-            "errors": []
+            "msg": "Invalid credentials",
+            "code": 7002
         }
         
 + Response 404 (application/json)
@@ -97,10 +96,25 @@ Register user using email and password.
 + `email` (required, string) - User's email,
 + `password` (required, string) - User's password
 
+OR
+
++ `social_id` (required, string) - User's social id
++ `social_name` (required, string) - Social site name
++ `password` (required, string) - User's password
+
+
 + Request (application/json)
 
         {
             "email": "aaa@aaa.aaa",
+            "password": "pass"
+        }
+
++ Request (application/json)
+
+        {
+            "social_id": "242490fj23uj2",
+            "social_name": "vk",
             "password": "pass"
         }
 
@@ -125,13 +139,13 @@ Register user using email and password.
         "code": 7003,
         "errors": []
         }
-        
+
 + Response 403 (application/json)
 
         {
             "status": "error",
-            "msg": "Email is taken",
-            "code": 7004
+            "msg": "Invalid credentials",
+            "code": 7002
         }
         
 + Response 500 (application/json)
