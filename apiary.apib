@@ -14,8 +14,15 @@ Resources related to user registration and login
 
 Log in user using email and password.
 
-+ `email` (required, string) - User's email OR
+(
++ `email` (required, string) - User's email 
+)
+OR
+(
 + `social_id` (required, string) - User's social id
++ `social_name` (required, string) - Social site name
+)
+
 + `password` (required, string) - User's password
 
 + Request (application/json)
@@ -29,6 +36,7 @@ Log in user using email and password.
 
         {
             "social_id": "242490fj23uj2",
+            "social_name": "vk",
             "password": "pass"
         }
         
@@ -62,6 +70,14 @@ Log in user using email and password.
             "msg": "Invalid email/password",
             "code": 7002,
             "errors": []
+        }
+        
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Unknown social site",
+            "code": 7005
         }
         
 + Response 500 (application/json)
