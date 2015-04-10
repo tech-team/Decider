@@ -2,7 +2,7 @@ FORMAT: 1A
 
 # Decider
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+In Soviet Russia decisions make you
 
 ## Group User
 
@@ -302,6 +302,7 @@ Resources related to questions in the API.
                 "category_id": 3,
                 "author": {
                     "id": 12,
+                    "uid": "3e3d33ff3f3fd3f3f3f3d3",
                     "username": "whotheforkami",
                     "last_name": "Добрев",
                     "first_name": "Нина",
@@ -329,6 +330,7 @@ Resources related to questions in the API.
                         "text": "Конечно же красное, какие тут вопросы могут быть?",
                         "creation_date": "2014-11-11T08:40:51.620Z",
                         "author": {
+                            "uid": "3e3d33ff3f3fd3f3f3f3d3",
                             "username": "snake",
                             "first_name": "",
                             "last_name": "",
@@ -343,6 +345,7 @@ Resources related to questions in the API.
                         "text": "Считаю, что белое. Вот так.",
                         "creation_date": "2014-11-11T08:40:51.620Z",
                         "author": {
+                            "uid": "3e3d33ff3f3fd3f3f3f3d3",
                             "username": "snake",
                             "first_name": "",
                             "last_name": "",
@@ -474,6 +477,7 @@ This action allows you to vote on a question's poll. Current example:
                     "category_id": 3,
                     "author": {
                         "id": 12,
+                        "uid": "3e3d33ff3f3fd3f3f3f3d3",
                         "username": "whotheforkami",
                         "last_name": "Добрев",
                         "first_name": "Нина",
@@ -505,6 +509,7 @@ This action allows you to vote on a question's poll. Current example:
                     "category_id": 3,
                     "author": {
                         "id": 12,
+                        "uid": "3e3d33ff3f3fd3f3f3f3d3",
                         "username": "whotheforkami",
                         "last_name": "Добрев",
                         "first_name": "Нина",
@@ -608,6 +613,7 @@ form of choices.
                 "is_anonymous": false,
                 "author": {
                     "id": 12,
+                    "uid": "3e3d33ff3f3fd3f3f3f3d3",
                     "username": "whotheforkami",
                     "last_name": "Добрев",
                     "first_name": "Нина",
@@ -668,4 +674,79 @@ form of choices.
             "msg": "Category is unknown"
         }
 
+
+## Comment [/comment]
+
+### Comment on a Question [POST]
+
+You can comment on a question using this action. It takes a JSON
+object containing a comment and information about the commented question.
+
++ `access_token` (string) - Access token
++ `text` (string) - Comment text
++ `question` (number) - Question id
++ `is_anonymous` (boolean) - Nuff said
+
++ Request (application/json)
+
+        {
+            "access_token": "ACCESSTOKEN",
+            "data": {
+                "text": "Imma commentin",
+                "question_id": 3,
+                "is_anonymous": false
+            }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "status": "ok",
+            "code": 2001,
+            "msg": "Comment added",
+            "data": {
+                "id": 10,
+                "text": "Imma commentin"
+                "creation_date": "2014-11-11T08:40:51.620Z",
+                "question_id": 3,
+                "is_anonymous": false,
+                "author": {
+                    "id": 12,
+                    "uid": "3e3d33ff3f3fd3f3f3f3d3",
+                    "username": "whotheforkami",
+                    "last_name": "Добрев",
+                    "first_name": "Нина",
+                    "middle_name": "Кжижтовна",
+                    "avatar": "http://vignette3.wikia.nocookie.net/prettylittleliars/images/9/99/Nina_dobrev.jpg/revision/latest?cb=20131005203615"
+                },
+                "likes": 0,
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "code": 8000,
+            "msg": "Required params are missing",
+            "errors": [ ]
+        }
         
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "code": 8100,
+            "msg": "Some fields are invalid",
+            "errors": [ ]
+        }
+        
+        
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "code": 8001,
+            "msg": "Question is unknown"
+        }
