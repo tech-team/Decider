@@ -12,18 +12,18 @@ Resources related to user registration and login
 
 ### Login [POST]
 
-Log in user using email and password.
+Log in user using email (or social id) and password.
 
-(
 + `email` (required, string) - User's email 
-)
++ `password` (required, string) - User's password
+
 OR
-(
+
 + `social_id` (required, string) - User's social id
 + `social_name` (required, string) - Social site name
-)
-
 + `password` (required, string) - User's password
+
+
 
 + Request (application/json)
 
