@@ -706,7 +706,7 @@ object containing a comment and information about the commented question.
             "msg": "Comment added",
             "data": {
                 "id": 10,
-                "text": "Imma commentin"
+                "text": "Imma commentin",
                 "creation_date": "2014-11-11T08:40:51.620Z",
                 "question_id": 3,
                 "is_anonymous": false,
@@ -719,7 +719,6 @@ object containing a comment and information about the commented question.
                     "middle_name": "Кжижтовна",
                     "avatar": "http://vignette3.wikia.nocookie.net/prettylittleliars/images/9/99/Nina_dobrev.jpg/revision/latest?cb=20131005203615"
                 },
-                "likes": 0,
             }
         }
 
@@ -742,6 +741,13 @@ object containing a comment and information about the commented question.
             "errors": [ ]
         }
         
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "code": 8100,
+            "msg": "Failed to comment"
+        }
         
 + Response 404 (application/json)
 
