@@ -161,6 +161,64 @@ OR
 Resources related to questions in the API.
 
 
+## Images [/images]
+
+### Images [POST]
+
+Upload an image
+
++ `access_token` (required, string, `ACCESSTOKEN`) - Access token,
++ `image` (required, image) - image
+
++ Request (multipart/form-data)
+
+        --Asrf456BGe4h
+        Content-Disposition: form-data; name="access_token"
+        
+        ACCESSTOKEN
+        --Asrf456BGe4h
+        Content-Disposition: form-data; name="image"; filename="img.jpg"
+        Content-Type: image/jpeg
+        
+        binary img file
+
++ Response 201 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "Image uploaded",
+            "code": 2001,
+            "data": {
+                "uid": "dd44d4d4d4d4d44"
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Some fields are not filled",
+            "code": 7003,
+            "errors": []
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Bad image",
+            "code": 4000
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Image upload failed",
+            "code": 4100
+        }
+
+
 ## Categories [/categories{?locale}{?access_token}]
 
 + Parameters
