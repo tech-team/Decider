@@ -198,7 +198,7 @@ Upload an image
         {
             "status": "error",
             "msg": "Some fields are not filled",
-            "code": 7003,
+            "code": 8000,
             "errors": []
         }
 
@@ -755,4 +755,64 @@ object containing a comment and information about the commented question.
             "status": "error",
             "code": 8001,
             "msg": "Question is unknown"
+        }
+
+
+## Group Vote
+
+Resources related to votes (likes) for comments and questions
+
+## Vote [/vote]
+
+### Vote [POST]
+
+Vote on a comment or question.
+
++ `entity` (required, string, ['question', 'comment']) - Entity name 
++ `entity_id` (required, string) - Entity id 
++ `access_token` (required, string) - Access token
+
+
++ Request (application/json)
+
+        {
+            "access_token": "fef232if2nf2nfi2n",
+            "entity": "question",
+            "entity_id": 23
+        }
+        
++ Response 201 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "Vote successful",
+            "code": 2001,
+            "data": {
+                "entity_id": 23
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+        "status": "error",
+        "msg": "Some fields are not filled",
+        "code": 8000,
+        "errors": []
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Invalid entity"
+            "code": 8101
+        }
+        
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "code": 8010,
+            "msg": "Unknown entity"
         }
