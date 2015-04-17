@@ -209,7 +209,9 @@ Upload an image
             "msg": "Bad image",
             "code": 4000
         }
-        
+
++ Response 403 (application/json)
+
 + Response 500 (application/json)
 
         {
@@ -269,12 +271,6 @@ Resources related to categories and locales
         }        
         
 + Response 403 (application/json)
-
-        {
-            "status": "error",
-            "code": 7001,
-            "msg": "Access token is invalid"
-        }
 
 
 ## Group Question
@@ -358,14 +354,17 @@ Resources related to questions in the API.
                 ]
             }
         }
-        
-+ Response 403 (application/json)
+
++ Response 400 (application/json)
 
         {
             "status": "error",
-            "code": 7001,
-            "msg": "Access token is invalid"
+            "code": 8100,
+            "msg": "Some fields are invalid",
+            "errors": []
         }
+        
++ Response 403 (application/json)
         
 + Response 404 (application/json)
 
@@ -375,6 +374,13 @@ Resources related to questions in the API.
             "msg": "Question with specified id was not found"
         }
         
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "code": 1000,
+            "msg": "Failed to get question details"
+        }
 
 
 ## Poll [/poll]
@@ -404,7 +410,7 @@ This action allows you to vote on a question's poll. Current example:
         {
             "status": "ok",
             "code": 2001,
-            "msg": "Success",
+            "msg": "Voted successfully",
             "votes_count": 228
         }
      
@@ -427,12 +433,6 @@ This action allows you to vote on a question's poll. Current example:
         }
     
 + Response 403 (application/json)
-
-        {
-            "status": "error",
-            "code": 7001,
-            "msg": "Access token is invalid"
-        }
         
 + Response 404 (application/json)
 
@@ -448,6 +448,14 @@ This action allows you to vote on a question's poll. Current example:
             "status": "error",
             "code": 8002,
             "msg": "Poll item with specified id was not found"
+        }
+
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "code": 1000,
+            "msg": "Failed to vote"
         }
 
 ## Question's collection [/questions{?tab}{?limit}{?offset}{?categories%5b%5d}{?access_token}]
@@ -547,13 +555,6 @@ This action allows you to vote on a question's poll. Current example:
         }        
         
 + Response 403 (application/json)
-
-        {
-            "status": "error",
-            "code": 7001,
-            "msg": "Access token is invalid"
-        }
-        
         
 + Response 404 (application/json)
 
@@ -561,6 +562,14 @@ This action allows you to vote on a question's poll. Current example:
             "status": "error",
             "code": 8003,
             "msg": "Tab is unknown"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "code": 1000,
+            "msg": "Failed to fetch questions"
         }
         
         
@@ -658,13 +667,6 @@ form of choices.
         
         
 + Response 403 (application/json)
-
-        {
-            "status": "error",
-            "code": 7001,
-            "msg": "Access token is invalid"
-        }
-        
         
 + Response 404 (application/json)
 
@@ -674,7 +676,14 @@ form of choices.
             "msg": "Category is unknown"
         }
 
++ Response 500 (application/json)
 
+        {
+            "status": "error",
+            "code": 1000,
+            "msg": "Failed to create question"
+        }
+        
 ## Comment [/comment]
 
 ### Comment on a Question [POST]
@@ -741,20 +750,20 @@ object containing a comment and information about the commented question.
             "errors": [ ]
         }
         
-+ Response 400 (application/json)
-
-        {
-            "status": "error",
-            "code": 8100,
-            "msg": "Failed to comment"
-        }
-        
 + Response 404 (application/json)
 
         {
             "status": "error",
             "code": 8001,
             "msg": "Question is unknown"
+        }
+        
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "code": 1000,
+            "msg": "Failed to comment"
         }
 
 
