@@ -157,6 +157,52 @@ OR
         }
 
 
+## Refresh token [/refresh_token]
+
+### Refresh token [GET]
+
+Refresh token data
+
++ `refresh_token` (required, string) - refresh_token
+
++ Request (application/json)
+
+        {
+            "refresh_token": "fewefwgwewgogjockp"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "Here is your fresh token",
+            "code": 2000,
+            "data": {
+                "access_token": "d7Fi4I2DtLXuLCNukHDITQdjqfFDfR",
+                "expires": 36000,
+                "refresh_token": "9Rz8AFAyMYJHjmYs8WXMGHQbBTvwOk"
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Required params are missing",
+            "code": 8000,
+            "errors": ["refresh_token"]
+        }
+
+
++ Response 403 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Invalid refresh token",
+            "code": 7001
+        }       
+        
+        
 ## Group Image
 
 Resources related to image upload
