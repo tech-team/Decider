@@ -214,7 +214,8 @@ Resources related to image upload
 Upload an image
 
 + `access_token` (required, string, `ACCESSTOKEN`) - Access token,
-+ `image` (required, image) - image
++ `image` (required, image) - source image
++ `preview` (required, image) - preview image
 
 + Request (multipart/form-data)
 
@@ -227,12 +228,17 @@ Upload an image
         Content-Type: image/jpeg
         
         binary img file
+        --Asrf456BGe4h
+        Content-Disposition: form-data; name="preview"; filename="img_prev.jpg"
+        Content-Type: image/jpeg
+        
+        binary img file
 
 + Response 201 (application/json)
 
         {
             "status": "ok",
-            "msg": "Image uploaded",
+            "msg": "Images uploaded",
             "code": 2001,
             "data": {
                 "uid": "dd44d4d4d4d4d44"
@@ -245,7 +251,7 @@ Upload an image
             "status": "error",
             "msg": "Required params missing",
             "code": 8000,
-            "errors": ["image"]
+            "errors": []
         }
 
 + Response 400 (application/json)
