@@ -159,7 +159,7 @@ OR
 
 ## Refresh token [/refresh_token]
 
-### Refresh token [GET]
+### Refresh token [POST]
 
 Refresh token data
 
@@ -171,12 +171,12 @@ Refresh token data
             "refresh_token": "fewefwgwewgogjockp"
         }
         
-+ Response 200 (application/json)
++ Response 201 (application/json)
 
         {
             "status": "ok",
             "msg": "Here is your fresh token",
-            "code": 2000,
+            "code": 2001,
             "data": {
                 "access_token": "d7Fi4I2DtLXuLCNukHDITQdjqfFDfR",
                 "expires": 36000,
