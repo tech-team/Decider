@@ -157,6 +157,63 @@ OR
         }
 
 
+## User data [/user/{user_id}{?access_token}]
+
++ Parameters
+    + user_id (required, number, `1`) ... ID of User in form of an integer
+    + access_token (required, string, `ACCESSTOKEN`) ... Access token
+
+### View user's details [GET]
+
++ Request (application/json)
+
+        {
+            "access_token": "fewefwgwewgogjockp"
+        }
+
+
++ Response 200 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "User fetched successfully",
+            "code": 2000,
+            "data": {
+                "uid": "dwwdwdwdw",
+                "first_name": "dedede",
+                "and_all": "other_data"
+            }
+        }
+
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Some fields are invalid",
+            "code": 8100,
+            "errors": ["user_id"]
+        }
+
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "msg": "No user with specified id",
+            "code": 8006
+        }
+
+
++ Response 500 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Failed to fetch user",
+            "code": 1000
+        }
+        
+        
 ## Refresh token [/refresh_token]
 
 ### Refresh token [POST]
