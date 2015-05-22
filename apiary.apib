@@ -594,10 +594,10 @@ This action allows you to vote on a question's poll. Current example:
 ## Question's collection [/questions{?tab}{?limit}{?offset}{?categories%5b%5d}{?access_token}]
 
 + Parameters
-    + tab (required, string, `new`) ... Question tab [new, popular, my]
-    + limit (required, number, `1`) ... Maximum number of questions to return
-    + offset (required, number, `1`) ... Questions offset
-    + categories%5b%5d (required, number, `5`) ... Selected categories
+    + tab (optional, string, `new`) ... Question tab [new, popular, my]
+    + limit (optional, number, `1`) ... Maximum number of questions to return
+    + offset (optional, number, `1`) ... Questions offset
+    + categories%5b%5d (optional, number, `5`) ... Selected categories
         For example: `categories[]=1&categories[]=2&categories[]=3`
     + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
@@ -914,7 +914,7 @@ object containing a comment and information about the commented question.
     + question_id (required, number, `1`) ... Question id
     + limit (optional, number, `1`) ... Maximum number of comments to return
     + offset (optional, number, `1`) ... Comments offset
-    + order (required, string, `-creation_date`) ... Order by field, prepend '-' for descending
+    + order (optional, string, `-creation_date`) ... Order by field, prepend '-' for descending
     + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
 ### List All Comments on a question [GET]
