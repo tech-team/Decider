@@ -509,10 +509,8 @@ Resources related to questions in the API.
 This action allows you to vote on a question's poll. Current example:
 {
     "access_token":"ACCESSTOKEN",
-    "data": {
-        "question_id": 1,
-        "poll_item_id":12
-    }
+    "question_id": 1,
+    "poll_item_id":12
 }
 
 + `access_token` (required, string) ... Access token
@@ -522,7 +520,7 @@ This action allows you to vote on a question's poll. Current example:
 
 + Request (application/x-www-form-urlencoded)
 
-        access_token=ACCESSTOKEN&data={"access_token":"ACCESSTOKEN","data":{"question_id":1,"poll_item_id":12}}
+        access_token=ACCESSTOKEN&question_id=1&poll_item_id=12
 
 + Response 201 (application/json)
 
