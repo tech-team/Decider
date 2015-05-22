@@ -823,7 +823,7 @@ form of choices.
             "msg": "Failed to create question"
         }
         
-## Comment [/comment]
+## Comment [/comments]
 
 ### Comment on a Question [POST]
 
@@ -832,7 +832,7 @@ object containing a comment and information about the commented question.
 
 + `access_token` (string) - Access token
 + `text` (string) - Comment text
-+ `question` (number) - Question id
++ `question_id` (number) - Question id
 + `is_anonymous` (boolean) - Nuff said
 
 + Request (application/json)
@@ -906,6 +906,54 @@ object containing a comment and information about the commented question.
         }
 
 
+## Comments collection [/comments{?question_id}{?limit}{?offset}{?order}{?access_token}]
+
++ Parameters
+    + question_id (required, number, `1`) ... Question id
+    + limit (optional, number, `1`) ... Maximum number of comments to return
+    + offset (optional, number, `1`) ... Comments offset
+    + order (required, string, `-creation_date`) ... Order by field, prepend '-' for descending
+    + access_token (required, string, `ACCESSTOKEN`) ... Access token
+
+### List All Comments on a question [GET]
+
++ Response 200 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "Successfully fetched comments",
+            "code": 2000,
+            "data": [
+                {
+                    "author": {
+                        "username": "admin",
+                        "first_name": "",
+                        "last_name": "",
+                        "middle_name": "",
+                        "uid": "b27ae426b7eb42b89f6a8a51fa2a7c0f",
+                        "avatar": null
+                    },
+                    "text": "see",
+                    "creation_date": "2015-04-17T15:11:59.671Z",
+                    "voted": false,
+                    "id": 34,
+                    "likes_count": 0
+                }
+            ]
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "code": 8100,
+            "msg": "Some parameters are invalid",
+            "errors": [ ]
+        }        
+        
++ Response 403 (application/json)
+        
+        
 ## Group Vote
 
 Resources related to votes (likes) for comments and questions
