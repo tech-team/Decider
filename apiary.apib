@@ -17,26 +17,11 @@ Log in user using email (or social id) and password.
 + `email` (required, string) - User's email 
 + `password` (required, string) - User's password
 
-OR
-
-+ `social_id` (required, string) - User's social id
-+ `social_name` (required, string) - Social site name
-+ `password` (required, string) - User's password
-
-
 
 + Request (application/json)
 
         {
             "email": "aaa@aaa.aaa",
-            "password": "pass"
-        }
-
-+ Request (application/json)
-
-        {
-            "social_id": "242490fj23uj2",
-            "social_name": "vk",
             "password": "pass"
         }
         
@@ -159,8 +144,10 @@ OR
 
 ## User data [/user/{user_id}{?access_token}]
 
+Returns user data (current user if user_id is not specified)
+
 + Parameters
-    + user_id (required, number, `1`) ... ID of User in form of an integer
+    + user_id (optional, number, `1`) ... ID of User in form of an integer
     + access_token (required, string, `ACCESSTOKEN`) ... Access token
 
 ### View user's details [GET]
