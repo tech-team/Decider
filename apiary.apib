@@ -204,6 +204,61 @@ Returns user data (current user if user_id is not specified)
             "code": 1000
         }
         
+
+### Edit user [POST]
+
++ Request (application/json)
+
+        {
+            "access_token": "fewefwgwewgogjockp",
+            "username": "vasya",
+            "and_all": "other_fields"
+        }
+        
++ Response 201 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "User successfully updated",
+            "code": 2001,
+            "data": {
+                "username": "vasya",
+                "last_name": "BBB",
+                "uid": "b27ae426b7eb42b89f6a8a51fa2a7c0f",
+                "social_id": "22",
+                "is_active": true,
+                "first_name": "DDD",
+                "birthday": null,
+                "date_joined": "2015-04-09T12:58:20Z",
+                "city": "",
+                "about": "",
+                "middle_name": "",
+                "is_anonymous": false,
+                "country": null,
+                "last_login": "2015-07-18T18:14:12Z",
+                "avatar": null,
+                "gender": false,
+                "social_site": "vk"
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Username is required to finish registration",
+            "code": 7003,
+            "errors": []
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Username taken",
+            "code": 7006,
+            "errors": []
+        }
         
 ## Refresh token [/refresh_token]
 
