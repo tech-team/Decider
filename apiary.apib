@@ -42,19 +42,19 @@ Log in user using email (or social id) and password.
 + Response 400 (application/json)
 
         {
-        "status": "error",
-        "msg": "Registration unfinished",
-        "code": 3000,
-        "errors": []
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
         }
         
 + Response 400 (application/json)
 
         {
-        "status": "error",
-        "msg": "Some fields are not filled",
-        "code": 7003,
-        "errors": []
+            "status": "error",
+            "msg": "Some fields are not filled",
+            "code": 7003,
+            "errors": []
         }
         
 + Response 400 (application/json)
@@ -114,10 +114,10 @@ Register user using email and password.
 + Response 400 (application/json)
 
         {
-        "status": "error",
-        "msg": "Some fields are not filled",
-        "code": 7003,
-        "errors": []
+            "status": "error",
+            "msg": "Some fields are not filled",
+            "code": 7003,
+            "errors": []
         }
 
 + Response 400 (application/json)
@@ -168,6 +168,15 @@ Returns user data (current user if user_id is not specified)
         }
 
 
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
+        
 + Response 400 (application/json)
 
         {
@@ -288,6 +297,15 @@ Upload an image
 
         {
             "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
             "msg": "Required params missing",
             "code": 8000,
             "errors": []
@@ -358,6 +376,15 @@ Resources related to categories and locales
                     "name": "Работа"
                 }
             ]
+        }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
         }
         
 + Response 400 (application/json)
@@ -460,6 +487,15 @@ Resources related to questions in the API.
 
         {
             "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
             "code": 8100,
             "msg": "Some fields are invalid",
             "errors": []
@@ -504,6 +540,7 @@ This action allows you to vote on a question's poll. Current example:
 
         access_token=ACCESSTOKEN&question_id=1&poll_item_id=12
 
+
 + Response 201 (application/json)
 
         {
@@ -512,7 +549,16 @@ This action allows you to vote on a question's poll. Current example:
             "msg": "Voted successfully",
             "votes_count": 228
         }
-     
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
+        
 + Response 400 (application/json)
 
         {
@@ -661,6 +707,15 @@ This action allows you to vote on a question's poll. Current example:
                 }
             ]
         }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
         
 + Response 400 (application/json)
 
@@ -670,7 +725,7 @@ This action allows you to vote on a question's poll. Current example:
             "msg": "Some parameters are invalid",
             "errors": [ ]
         }        
-        
+    
 + Response 403 (application/json)
         
 + Response 404 (application/json)
@@ -751,6 +806,15 @@ form of choices. For every item in range from 1 to items_count
             }
         }
 
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
+        
 + Response 400 (application/json)
 
         {
@@ -840,6 +904,15 @@ object containing a comment and information about the commented question.
 
         {
             "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": "error",
             "code": 8000,
             "msg": "Required params are missing",
             "errors": [ ]
@@ -909,6 +982,15 @@ object containing a comment and information about the commented question.
                 }
             ]
         }
+
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
         
 + Response 400 (application/json)
 
@@ -959,6 +1041,15 @@ Vote on a comment or question.
             }
         }
 
++ Response 400 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Registration unfinished",
+            "code": 3000,
+            "errors": []
+        }
+        
 + Response 400 (application/json)
 
         {
