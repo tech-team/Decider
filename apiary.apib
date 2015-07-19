@@ -207,13 +207,19 @@ Returns user data (current user if user_id is not specified)
 
 ### Edit user [POST]
 
-+ Request (application/json)
+Multipart request with fields subject to updating. If registration is
+unfinished, username is required.
 
-        {
-            "access_token": "fewefwgwewgogjockp",
-            "username": "vasya",
-            "and_all": "other_fields"
-        }
++ `username` (optional, string, `usernaem`) ... Username (has to be unique)
++ `first_name` (optional, string, `fname`) ... First name
++ `last_name` (optional, string, `lname`) ... Last name
++ `birthday` (optional, string, `2011-09-02`) ... Birthday in "YYYY-MM-DD" format
++ `country` (optional, string, `яussia`) ... Country
++ `city` (optional, string, `moskva`) ... City
++ `about` (optional, string, `hodor`) ... Short info about user
++ `gender` (optional, string, `F`) ... Gender ('F', 'M' or 'N')
+
++ Request (multipart/form-data)
         
 + Response 201 (application/json)
 
@@ -804,8 +810,8 @@ This action allows you to vote on a question's poll. Current example:
 
 ### Create a New Question [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
+You may create your own question using this action. It takes a multipart form
+containing a question and a collection of answers in the
 form of choices. For every item in range from 1 to items_count
 `image`, `preview` and `text` fields are required.
 
