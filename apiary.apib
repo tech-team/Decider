@@ -608,7 +608,15 @@ This action allows you to vote on a question's poll. Current example:
             "status": "ok",
             "code": 2001,
             "msg": "Voted successfully",
-            "votes_count": 228
+            "data": [
+            {
+                "poll_item_id": 11,
+                "votes_count": 228
+            },
+            {
+                "poll_item_id": 12,
+                "votes_count": 248
+            }
         }
 
 + Response 400 (application/json)
@@ -718,19 +726,22 @@ This action allows you to vote on a question's poll. Current example:
                             "text": "Белое",
                             "image_url": "http://cs301806.vk.me/v301806039/3fe0/Ps1ZDUixseo.jpg",
                             "preview_url": "url/././././.jpg",
-                            "votes_count": 23
+                            "votes_count": 23,
+                            "voted": true       
                         },
                         {
                             "id": 125,
                             "text": "Красное",
                             "image_url": "http://public.starlook.ru/temp/article/lookobzor/27/1/63rdAnnualPrimetimeEmmyAwardsArrivalsR-7OeiQnDDxl.jpg",
                             "preview_url": "url/././././.jpg",
-                            "votes_count": 73
+                            "votes_count": 73,
+                            "voted": false
                         }
                     ],
                     "likes_count": 42,
                     "comments_count": 2,
-                    "is_anonymous": true
+                    "is_anonymous": true,
+                    "voted": true
                 },
                 {
                     "id": 2,
@@ -752,16 +763,19 @@ This action allows you to vote on a question's poll. Current example:
                             "text": "Белое",
                             "image_url": "http://cs301806.vk.me/v301806039/3fe0/Ps1ZDUixseo.jpg",
                             "preview_url": "url/././././.jpg",
-                            "votes_count": 23
+                            "votes_count": 23,
+                            "voted": false
                         },
                         {
                             "id": 127,
                             "text": "Красное",
                             "image_url": "http://public.starlook.ru/temp/article/lookobzor/27/1/63rdAnnualPrimetimeEmmyAwardsArrivalsR-7OeiQnDDxl.jpg",
                             "preview_url": "url/././././.jpg",
-                            "votes_count": 73
+                            "votes_count": 73,
+                            "voted": false
                         }
                     ],
+                    "voted": false,
                     "likes_count": 54,
                     "comments_count": 10,
                     "is_anonymous": true
@@ -852,14 +866,14 @@ form of choices. For every item in range from 1 to items_count
                         "text": "Белое",
                         "image_url": "url/././././",
                         "preview_url": "url/././././",
-                        "votes_count": 0
+                        "votes_count": 0,
                     },
                     {
                         "id": 125,
                         "text": "Красное",
                         "image_url": "url/././././",
                         "preview_url": "url/././././",
-                        "votes_count": 0
+                        "votes_count": 0,
                     }
                 ],
                 "likes_count": 0,
@@ -924,7 +938,8 @@ object containing a comment and information about the commented question.
 + `access_token` (string) - Access token
 + `text` (string) - Comment text
 + `question_id` (number) - Question id
-+ `is_anonymous` (boolean) - Nuff said
++ `is_anonymous` (boolean) - Nuff said,
++ `last_seen_id` (number) - id of last seen comment
 
 + Request (application/json)
 
@@ -943,7 +958,7 @@ object containing a comment and information about the commented question.
             "status": "ok",
             "code": 2001,
             "msg": "Comment added",
-            "data": {
+            "data": [{
                 "id": 10,
                 "text": "Imma commentin",
                 "creation_date": "2014-11-11T08:40:51.620Z",
@@ -958,7 +973,7 @@ object containing a comment and information about the commented question.
                     "middle_name": "Кжижтовна",
                     "avatar": "http://vignette3.wikia.nocookie.net/prettylittleliars/images/9/99/Nina_dobrev.jpg/revision/latest?cb=20131005203615"
                 },
-            }
+            }]
         }
 
 + Response 400 (application/json)
@@ -1101,10 +1116,8 @@ Vote on a comment or question.
 
         {
             "access_token": "fef232if2nf2nfi2n",
-            "data": {
-                "entity": "question",
-                "entity_id": 23
-            }
+            "entity": "question",
+            "entity_id": 23
         }
         
 + Response 201 (application/json)
