@@ -1165,3 +1165,45 @@ Vote on a comment or question.
             "code": 8010,
             "msg": "Unknown entity"
         }
+
+
+## Group Share
+
+Resources related to sharing images
+
+## Share [/share]
+
+### Share [POST]
+
+Get a combined image for sharing
+
++ `question_id` (required, number, 42) - Question id 
++ `access_token` (required, string) - Access token
+
+
++ Request (application/json)
+
+        {
+            "access_token": "fef232if2nf2nfi2n",
+            "question_id": 42
+        }
+        
++ Response 201 (application/json)
+
+        {
+            "status": "ok",
+            "msg": "Sharing image created",
+            "code": 2001,
+            "data": {
+                "url": "media/blablabla.jpg"
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "status": "error",
+            "msg": "Question unknown",
+            "code": 8001,
+            "errors": []
+        }
