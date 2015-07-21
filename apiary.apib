@@ -218,6 +218,7 @@ unfinished, username is required.
 + `city` (optional, string, `moskva`) ... City
 + `about` (optional, string, `hodor`) ... Short info about user
 + `gender` (optional, string, `F`) ... Gender ('F', 'M' or 'N')
++ `avatar` (optional, FILE) ... New avatar
 
 + Request (multipart/form-data)
         
@@ -255,6 +256,17 @@ unfinished, username is required.
             "msg": "Username is required to finish registration",
             "code": 7003,
             "errors": []
+        }
+
++ Response 400 (application/json)
+
+        {
+          "status": "error",
+          "msg": "Bad image",
+          "code": 4000,
+          "errors": [
+            "avatar"
+          ]
         }
 
 + Response 400 (application/json)
