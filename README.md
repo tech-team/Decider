@@ -1,5 +1,5 @@
 # Decider
-Descission-making support service.
+Decision-making support service.
 ![banner](https://raw.githubusercontent.com/tech-team/decider/master/img/banner.png)
 
 Used technologies:
